@@ -1,6 +1,6 @@
 # PewdsClicker
 
-## main file is pewds_clicker.py 
+## main file is pewds_clicker.py. Caution! Maybe loud!
 
 ## TODO:
 
