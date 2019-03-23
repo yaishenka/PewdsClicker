@@ -18,45 +18,44 @@ class GameObject:
 
 class MainHero(GameObject):
     def __init__(self, x, y):
-
-        self.original_image = pygame.image.load("images/brofist.png")
-        self._double_zoomed_image = pygame.transform.scale2x(self.original_image)
+        self.first_frame_image = pygame.image.load("images/hero_a.png")
+        self.second_frame_image = pygame.image.load("images/hero_b.png")
 
         self.center = (x, y)
 
-        self._current_image = self.original_image
-        self.__zoomed = False
+        self._current_image = self.first_frame_image
+        self.__frame_changed = False
 
-        super(MainHero, self).__init__(self.center, self.original_image.get_width(),
-                                       self.original_image.get_height())
+        super().__init__(self.center, self._current_image.get_width(),
+                                       self._current_image.get_height())
 
     def draw(self, surface):
         surface.blit(self._current_image, self._bounds)
 
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-            if (self.__zoomed):
-                self.__zoomed = False
+            if (self.__frame_changed):
+                self.__frame_changed = False
                 self._bounds = pygame.rect.Rect(self.center[0], self.center[1],
-                                                self.original_image.get_width(), self.original_image.get_height())
+                                                self.first_frame_image.get_width(), self.first_frame_image.get_height())
                 self._bounds.center = self.center
-                self._current_image = self.original_image
+                self._current_image = self.first_frame_image
             else:
                 self._bounds = pygame.rect.Rect(self.center[0], self.center[1],
-                                                self._double_zoomed_image.get_width(),
-                                                self._double_zoomed_image.get_height())
+                                                self.second_frame_image.get_width(),
+                                                self.second_frame_image.get_height())
                 self._bounds.center = self.center
-                self._current_image = self._double_zoomed_image
-                self.__zoomed = True
+                self._current_image = self.second_frame_image
+                self.__frame_changed = True
 
 
 class TextObject(GameObject):
-    def __init__(self, x, y, text_func, color):
-        super(TextObject, self).__init__((x, y), 0, 0)
+    def __init__(self, x, y, text_func, color, font_size=50):
+        super().__init__((x, y), 0, 0)
         self._pos = (x, y)
         self._text_func = text_func
         self._color = color
-        self._font_object = pygame.font.SysFont('Arial', 50)  # TODO from config
+        self._font_object = pygame.font.SysFont('Arial', font_size)  # TODO from config
         self._bounds = self.get_surface(text_func())
 
     def draw(self, surface):
@@ -80,5 +79,5 @@ class FlashingTextObject(TextObject):
         if (self.__visible):
             self.__visible = False
         else:
-            super(FlashingTextObject, self).draw(surface)
+            super().draw(surface)
             self.__visible = True

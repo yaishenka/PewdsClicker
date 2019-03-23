@@ -43,8 +43,6 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.__game_over = True
-                pygame.quit()
-                sys.exit()
             if self._current_window is not None:
                 self._current_window.handle_event(event)
 
@@ -54,9 +52,6 @@ class Game:
                 window_event(self)
 
     def start_game(self):
-        pygame.mixer.music.load('sounds/background_music.mp3')
-        pygame.mixer.music.set_volume(1.0)
-        pygame.mixer.music.play(-1)
         while not self.__game_over:
             if self.background_image is not None:
                 self.__surface.blit(self.background_image, [0, 0])
@@ -68,3 +63,4 @@ class Game:
             self.draw()
             pygame.display.update()
             self._clock.tick(self._frame_rate)
+        pygame.quit()
