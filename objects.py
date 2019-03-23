@@ -27,7 +27,7 @@ class MainHero(GameObject):
         self.__frame_changed = False
 
         super().__init__(self.center, self._current_image.get_width(),
-                                       self._current_image.get_height())
+                         self._current_image.get_height())
 
     def draw(self, surface):
         surface.blit(self._current_image, self._bounds)

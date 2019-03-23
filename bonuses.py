@@ -1,4 +1,6 @@
 from enum import Enum
+
+
 class Bonus:
     class BonusType(Enum):
         MONEY_PER_FRAME = 1
@@ -7,7 +9,6 @@ class Bonus:
 
     def __init__(self, type):
         self.type = type
-        self.bought = False
 
     def get_bonus(self):
         pass
@@ -17,6 +18,7 @@ class Bonus:
 
     def get_price(self):
         pass
+
 
 class BotNetBonus(Bonus):
     def __init__(self):
@@ -32,6 +34,7 @@ class BotNetBonus(Bonus):
     def get_presentation(self):
         return 'BotNet lvl{0}, price: {1}, subs: {2}'.format(self.level, self.get_price(), self.get_bonus())
 
+
 class AdvertisingBonus(Bonus):
     def __init__(self):
         self.level = 0
@@ -44,8 +47,4 @@ class AdvertisingBonus(Bonus):
         return 50 + 150 * (2 ** self.level)
 
     def get_presentation(self):
-        return 'Adver lvl{0}, price: {1}, money per sub: {2}'.format(self.level, self.get_price(), self.get_bonus())
-
-
-
-
+        return 'Advert lvl{0}, price: {1}, money per sub: {2}'.format(self.level, self.get_price(), self.get_bonus())

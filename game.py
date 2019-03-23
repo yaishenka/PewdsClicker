@@ -1,5 +1,4 @@
 import pygame
-import sys
 
 
 class Game:
@@ -8,13 +7,11 @@ class Game:
         self._screen_height = screen_height
         self._frame_rate = frame_rate
         self._caption = caption
-        self._current_window = None
 
         self.available_windows = {}
         self.background_image = None
-
+        self._current_window = None
         self.__game_over = False
-
 
         self.init_pygame()
 
@@ -29,7 +26,7 @@ class Game:
         if window is not None:
             self._current_window = window
         else:
-            raise Exception("window doesn't exists")
+            raise Exception("Window doesn't exists")
 
     def update(self):
         if self._current_window is not None:
