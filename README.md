@@ -1,5 +1,7 @@
 # PewdsClicker
 
+## main file is pewds_clicker.py 
+
 ## TODO:
 
 * Add Tessa music
