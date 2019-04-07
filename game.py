@@ -1,4 +1,6 @@
 import pygame
+import sys
+import os
 
 
 class Game:
@@ -61,4 +63,8 @@ class Game:
             self.draw()
             pygame.display.update()
             self._clock.tick(self._frame_rate)
-        pygame.quit()
+        # pygame.display.quit()
+        # print('1')
+        # pygame.quit()
+        # print('2')
+

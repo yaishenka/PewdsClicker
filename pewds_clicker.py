@@ -31,12 +31,15 @@ class PewdsClickerGame(Game):
         self.available_windows[WindowType.MAIN_GAME_WINDOW] = main_game_window
 
     def start_game(self):
-        pygame.mixer.music.load(os.path.join('sounds', 'background_music.mp3'))
+        pygame.mixer.music.load(os.path.join('sounds', 'background_music.wav'))
         pygame.mixer.music.set_volume(1.0)
         pygame.mixer.music.play(-1)
         super().start_game()
+        pygame.quit()
         self.available_windows[WindowType.MAIN_GAME_WINDOW].kill_thread()
         sys.exit()
+
+
 
 
 def main():
