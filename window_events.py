@@ -18,10 +18,13 @@ class WindowEvent:
 class ChangeWindowEvent(WindowEvent):
     def __init__(self, window_to_change):
         assert (window_to_change is not None)
-        super(ChangeWindowEvent, self).__init__(self.WindowEventType.CHANGE_WINDOW, window_to_change=window_to_change)
+        super(ChangeWindowEvent, self).__init__(
+            self.WindowEventType.CHANGE_WINDOW,
+            window_to_change=window_to_change)
 
     def __call__(self, game_object):
         try:
-            game_object.set_window(game_object.available_windows.get(self._kwargs['window_to_change']))
+            game_object.set_window(game_object.available_windows.get(
+                self._kwargs['window_to_change']))
         except Exception as e:
             print('Ошибка:\n', traceback.format_exc())

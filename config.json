@@ -1,4 +1,5 @@
 {
   "screen_width": 1080,
-  "screen_height": 720
+  "screen_height": 720,
+  "font_name": "Arial"
 }

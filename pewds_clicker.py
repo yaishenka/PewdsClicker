@@ -40,8 +40,6 @@ class PewdsClickerGame(Game):
         sys.exit()
 
 
-
-
 def main():
     game = PewdsClickerGame()
     game.start_game()

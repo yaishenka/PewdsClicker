@@ -67,4 +67,3 @@ class Game:
         # print('1')
         # pygame.quit()
         # print('2')
-

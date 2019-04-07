@@ -1,5 +1,6 @@
 import pygame
 import os
+import json
 
 
 class GameObject:
@@ -59,8 +60,13 @@ class TextObject(GameObject):
         self._pos = (x, y)
         self._text_func = text_func
         self._color = color
-        self._font_object = pygame.font.SysFont('Arial',
-                                                font_size)  # TODO from config
+        try:
+            with json.load(open('config.json')) as config:
+                font_name = config['font_name']
+        except:
+            font_name = 'Arial'
+        self._font_object = pygame.font.SysFont(font_name,
+                                                font_size)
         self._bounds = self.get_surface(text_func())
 
     def draw(self, surface):
