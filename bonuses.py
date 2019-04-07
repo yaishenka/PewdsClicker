@@ -32,7 +32,9 @@ class BotNetBonus(Bonus):
         return 50 + 50 * (2 ** self.level)
 
     def get_presentation(self):
-        return 'BotNet lvl{0}, price: {1}, subs: {2}'.format(self.level, self.get_price(), self.get_bonus())
+        return 'BotNet lvl{0}, price: {1}, subs: {2}'.format(self.level,
+                                                             self.get_price(),
+                                                             self.get_bonus())
 
 
 class AdvertisingBonus(Bonus):
@@ -47,4 +49,5 @@ class AdvertisingBonus(Bonus):
         return 50 + 150 * (2 ** self.level)
 
     def get_presentation(self):
-        return 'Advert lvl{0}, price: {1}, money per sub: {2}'.format(self.level, self.get_price(), self.get_bonus())
+        return 'Advert lvl{0}, price: {1}, money per sub: {2}'.format(
+            self.level, self.get_price(), self.get_bonus())

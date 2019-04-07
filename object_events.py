@@ -16,8 +16,9 @@ class ObjectEvent:
 class ChangeWindowEvent(ObjectEvent):
     def __init__(self, window_to_change):
         assert (window_to_change is not None)
-        super(ChangeWindowEvent, self).__init__(self.ObjectEventType.CHANGE_WINDOW, True,
-                                                window_to_change=window_to_change)
+        super(ChangeWindowEvent, self).__init__(
+            self.ObjectEventType.CHANGE_WINDOW, True,
+            window_to_change=window_to_change)
 
     def get_window_event(self):
         return WindowChangeWindowEvent(self._kwargs['window_to_change'])

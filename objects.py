@@ -1,4 +1,5 @@
 import pygame
+import os
 
 
 class GameObject:
@@ -18,8 +19,10 @@ class GameObject:
 
 class MainHero(GameObject):
     def __init__(self, x, y):
-        self.first_frame_image = pygame.image.load("images/hero_a.png")
-        self.second_frame_image = pygame.image.load("images/hero_b.png")
+        self.first_frame_image = pygame.image.load(
+            os.path.join('images', 'hero_a.png'))
+        self.second_frame_image = pygame.image.load(
+            os.path.join('images', 'hero_b.png'))
 
         self.center = (x, y)
 
@@ -37,7 +40,8 @@ class MainHero(GameObject):
             if (self.__frame_changed):
                 self.__frame_changed = False
                 self._bounds = pygame.rect.Rect(self.center[0], self.center[1],
-                                                self.first_frame_image.get_width(), self.first_frame_image.get_height())
+                                                self.first_frame_image.get_width(),
+                                                self.first_frame_image.get_height())
                 self._bounds.center = self.center
                 self._current_image = self.first_frame_image
             else:
@@ -55,12 +59,14 @@ class TextObject(GameObject):
         self._pos = (x, y)
         self._text_func = text_func
         self._color = color
-        self._font_object = pygame.font.SysFont('Arial', font_size)  # TODO from config
+        self._font_object = pygame.font.SysFont('Arial',
+                                                font_size)  # TODO from config
         self._bounds = self.get_surface(text_func())
 
     def draw(self, surface):
         self._bounds = self.get_surface(self._text_func())
-        center_pos = (self._pos[0] - self._bounds.get_width() / 2, self._pos[1] - self._bounds.get_height() / 2)
+        center_pos = (self._pos[0] - self._bounds.get_width() / 2,
+                      self._pos[1] - self._bounds.get_height() / 2)
         surface.blit(self._bounds, center_pos)
 
     def get_surface(self, text):
