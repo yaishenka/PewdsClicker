@@ -1,6 +1,6 @@
-import pygame
 import os
 import json
+import pygame
 
 
 class GameObject:
@@ -38,7 +38,7 @@ class MainHero(GameObject):
 
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-            if (self.__frame_changed):
+            if self.__frame_changed:
                 self.__frame_changed = False
                 self._bounds = pygame.rect.Rect(self.center[0], self.center[1],
                                                 self.first_frame_image.get_width(),
@@ -88,7 +88,7 @@ class FlashingTextObject(TextObject):
         self.__visible = False
 
     def draw(self, surface):
-        if (self.__visible):
+        if self.__visible:
             self.__visible = False
         else:
             super().draw(surface)

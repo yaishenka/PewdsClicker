@@ -1,12 +1,12 @@
+import json
+import time
+from threading import Thread
+from enum import Enum
+import pygame
 from objects import TextObject, MainHero, FlashingTextObject
 from window_events import ChangeWindowEvent
 from bonuses import Bonus, BotNetBonus, AdvertisingBonus
-from enum import Enum
-from threading import Thread
-import time
 from youtube_api import get_tseries_subs_count, get_pewds_subs_count
-import pygame
-import json
 
 
 class WindowType(Enum):
@@ -150,7 +150,7 @@ class MainGameWindow(GameWindow):
         return self.bonuses[Bonus.BonusType.SUBS].get_bonus()
 
     def update_tseries_subs(self):
-        while (not self.__stop_thread):
+        while not self.__stop_thread:
             real_subs = get_tseries_subs_count(self.__api_key)
             if real_subs:
                 self.tseries_subs = real_subs
